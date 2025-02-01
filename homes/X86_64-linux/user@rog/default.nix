@@ -6,6 +6,7 @@
     office.enable = true;
     gaming.enable = true;
     social.enable = true;
+    laptop.enable = true;
   };
 
   services.custom = {

@@ -18,10 +18,10 @@
       url                               = "github:snowfallorg/lib";
       inputs.nixpkgs.follows            = "nixpkgs";
     };
-    disko = {
-      url                               = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows            = "nixpkgs";
-    };
+    # disko = {
+    #   url                               = "github:nix-community/disko/latest";
+    #   inputs.nixpkgs.follows            = "nixpkgs";
+    # };
     home-manager = {
       url                               = "github:nix-community/home-manager";
       inputs.nixpkgs.follows            = "nixpkgs";
@@ -30,10 +30,10 @@
       url                               = "github:nlewo/comin";
       inputs.nixpkgs.follows            = "nixpkgs";
     };
-    sops-nix = {
-      url                               = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows            = "nixpkgs";
-    };
+    # sops-nix = {
+    #   url                               = "github:mic92/sops-nix";
+    #   inputs.nixpkgs.follows            = "nixpkgs";
+    # };
     nixos-anywhere = {
       url                               = "github:numtide/nixos-anywhere";
       inputs.nixpkgs.follows            = "nixpkgs";
@@ -56,7 +56,7 @@
         namespace = "custom";
         meta = {
           name = "custom";
-          title = "MylesBolton's custom Nix stuff";
+          title = "Blanco's custom Nix stuff";
         };
       };
     };
@@ -77,8 +77,8 @@
       systems.modules.nixos = with inputs; [ 
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
-        disko.nixosModules.disko
-        sops-nix.nixosModules.sops
+        # disko.nixosModules.disko
+        # sops-nix.nixosModules.sops
         comin.nixosModules.comin
         ({...}: {
           services.comin = {

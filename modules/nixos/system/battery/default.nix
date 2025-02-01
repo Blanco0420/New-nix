@@ -38,6 +38,6 @@ in
     powerManagement.powertop.enable = true;
 
     # Enable thermald (only necessary if on Intel CPUs)
-    services.thermald.enable = true;
+    # services.thermald.enable = true;
   };
 }

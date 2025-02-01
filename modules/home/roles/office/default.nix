@@ -18,9 +18,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nextcloud-client
       libreoffice
-      teams-for-linux
       obsidian
       okular
     ];

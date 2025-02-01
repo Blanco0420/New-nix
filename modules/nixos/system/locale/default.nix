@@ -31,7 +31,7 @@ in
         LC_TIME = "en_GB.UTF-8";
       };
     };
-    time.timeZone = "Europe/London";
+    time.timeZone = "Asia/Tokyo";
 
     # Configure keymap in X11
     services.xserver = {
