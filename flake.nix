@@ -85,7 +85,7 @@
           enable = true;
           remotes = [{
             name = "origin";
-            url = "https://github.com/MylesBolton/nixos.git";
+            url = "https://github.com/Blanco0420/New-nix.git";
             #auth.access_token_path = "/filepath/to/your/access/token";
             branches.main.name = "main";
             branches.testing.name = "testing";
