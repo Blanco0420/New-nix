@@ -27,6 +27,7 @@ in
       xpipe
       wl-clipboard
       vscode
+      rustdesk
     ];
   };
 }

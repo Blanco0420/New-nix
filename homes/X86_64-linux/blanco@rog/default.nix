@@ -3,19 +3,18 @@
   roles = {
     common.enable = true;
     desktop.enable = true;
-    office.enable = true;
+    # office.enable = true;
     gaming.enable = true;
     social.enable = true;
-    laptop.enable = true;
   };
 
   services.custom = {
-      syncthing.enable = true;
+      syncthing.enable = false;
     };
 
   custom.user = {
       enable = true;
-      name = "user";
+      name = "blanco";
     };
     
   home.stateVersion = "24.05";

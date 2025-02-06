@@ -23,7 +23,10 @@ in
           enable = true;
           excludePackages = [ pkgs.xterm ];
         };
-        displayManager.sddm.enable = true;
+        displayManager.sddm = {
+          enable = true;
+          wayland.enable = true;
+        };
         desktopManager.plasma6.enable = true;
     };
 
@@ -42,6 +45,7 @@ in
       system = {
         custom = {
           bluetooth.enable = true;
+          battery.enable = true;
         };
       };
     };

@@ -1,8 +1,8 @@
 {
   description = "MylesBolton's Nix/NixOS Config";
   inputs = {
-    nixpkgs.url                         = "github:Nixos/nixpkgs";
-    nixpkgs-unstable.url                = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url                         = "github:Nixos/nixpkgs";
+    nixpkgs.url                = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url                  = "github:NixOS/nixos-hardware";
     stylix.url                          = "github:danth/stylix";
     nur.url                             = "github:nix-community/NUR";
@@ -37,7 +37,7 @@
     nixos-anywhere = {
       url                               = "github:numtide/nixos-anywhere";
       inputs.nixpkgs.follows            = "nixpkgs";
-      inputs.disko.follows              = "disko";
+      # inputs.disko.follows              = "disko";
     };
     ghostty = {
       url                               = "github:ghostty-org/ghostty";
@@ -74,25 +74,25 @@
         nur.overlays.default
        ];
 
-      systems.modules.nixos = with inputs; [ 
-        stylix.nixosModules.stylix
-        home-manager.nixosModules.home-manager
-        # disko.nixosModules.disko
-        # sops-nix.nixosModules.sops
-        comin.nixosModules.comin
-        ({...}: {
-          services.comin = {
-          enable = true;
-          remotes = [{
-            name = "origin";
-            url = "https://github.com/Blanco0420/New-nix.git";
-            #auth.access_token_path = "/filepath/to/your/access/token";
-            branches.main.name = "main";
-            branches.testing.name = "testing";
-            poller.period = 300;
-          }];
-        };
-      })
-      ];
+      # systems.modules.nixos = with inputs; [ 
+      #   stylix.nixosModules.stylix
+      #   home-manager.nixosModules.home-manager
+      #   # disko.nixosModules.disko
+      #   # sops-nix.nixosModules.sops
+      #   comin.nixosModules.comin
+      #   ({...}: {
+      #     services.comin = {
+      #     enable = true;
+      #     remotes = [{
+      #       name = "origin";
+      #       url = "https://github.com/Blanco0420/New-nix.git";
+      #       #auth.access_token_path = "/filepath/to/your/access/token";
+      #       branches.main.name = "main";
+      #       branches.testing.name = "testing";
+      #       poller.period = 300;
+      #     }];
+      #   };
+      # })
+      # ];
     };
 }

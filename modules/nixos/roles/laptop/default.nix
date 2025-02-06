@@ -13,11 +13,15 @@ let
 in
 {
   options.roles.laptop = with types; {
-    enable = mkBoolOpt false "laptop nixos configuration.";
+    enable = mkBoolOpt false "enable ROG laptop stuff";
   };
 
   config = mkIf cfg.enable {
-    
-      system.custom.battery.enable = true;
+    programs = {
+      rog-control-center = {
+        enable = true;
+        autoStart = true;
+      };
+    };
   };
 }

@@ -17,14 +17,27 @@ in
   };
 
   config = mkIf cfg.enable {
+    # boot.loader = {
+    #   systemd-boot = {
+    #     enable = true;
+    #     configurationLimit = 5;
+    #     editor = false;
+    #   };
+    #   efi.canTouchEfiVariables = true;
+    #   timeout = 5;
+    # };
     boot.loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 5;
-        editor = false;
-      };
-      efi.canTouchEfiVariables = true;
-      timeout = 5;
-    };
+  efi = {
+    canTouchEfiVariables = true;
+    efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+  };
+  grub = {
+     efiSupport = true;
+     useOSProber = true;
+     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+     device = "nodev";
+  };
+};
+
   };
 }

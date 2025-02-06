@@ -19,7 +19,7 @@
   };
 
   user = {
-    name = "user";
+    name = "blanco";
     initialPassword = "1";
   };
 

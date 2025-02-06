@@ -20,7 +20,6 @@ in
     system.custom.nix.enable = true;
     cli.shells.fish.enable = true;
     home.packages = with pkgs; [
-      gopass
       gnupg
       gpg-tui
       git
