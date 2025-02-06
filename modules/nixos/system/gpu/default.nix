@@ -52,5 +52,5 @@ in {
             #     nvidiaBusId = "PCI:1:0:0";
             # }
         };
-    }
+    };
 }

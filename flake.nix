@@ -74,25 +74,25 @@
         nur.overlays.default
        ];
 
-      # systems.modules.nixos = with inputs; [ 
-      #   stylix.nixosModules.stylix
-      #   home-manager.nixosModules.home-manager
-      #   # disko.nixosModules.disko
-      #   # sops-nix.nixosModules.sops
-      #   comin.nixosModules.comin
-      #   ({...}: {
-      #     services.comin = {
-      #     enable = true;
-      #     remotes = [{
-      #       name = "origin";
-      #       url = "https://github.com/Blanco0420/New-nix.git";
-      #       #auth.access_token_path = "/filepath/to/your/access/token";
-      #       branches.main.name = "main";
-      #       branches.testing.name = "testing";
-      #       poller.period = 300;
-      #     }];
-      #   };
-      # })
-      # ];
+      systems.modules.nixos = with inputs; [ 
+        stylix.nixosModules.stylix
+        home-manager.nixosModules.home-manager
+        # disko.nixosModules.disko
+        # sops-nix.nixosModules.sops
+        comin.nixosModules.comin
+        ({...}: {
+        #   services.comin = {
+        #   enable = true;
+        #   remotes = [{
+        #     name = "origin";
+        #     url = "https://github.com/Blanco0420/New-nix.git";
+        #     #auth.access_token_path = "/filepath/to/your/access/token";
+        #     branches.main.name = "main";
+        #     branches.testing.name = "testing";
+        #     poller.period = 300;
+        #   }];
+        # };
+      })
+      ];
     };
 }

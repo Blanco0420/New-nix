@@ -14,7 +14,7 @@
 
   custom.user = {
       enable = true;
-      name = "blanco";
+      name = "user";
     };
     
   home.stateVersion = "24.05";
