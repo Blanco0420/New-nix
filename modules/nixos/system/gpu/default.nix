@@ -8,9 +8,9 @@
 }:
 with lib;
 with lib.custom;
-let cfg = config.system.custom.gpu;
+let cfg = config.system.custom.nvidiagpu;
 in {
-    options.system.custom.gpu = with types; {
+    options.system.custom.nvidiagpu = with types; {
         enable = mkBoolOpt false "Enable Nvidia GPU drivers";
     };
     config = mkIf cfg.enable {

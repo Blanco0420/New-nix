@@ -31,7 +31,6 @@ in
     };
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
-      plasma-browser-integration
       gwenview
       konsole
       oxygen
@@ -44,8 +43,6 @@ in
 
       system = {
         custom = {
-          bluetooth.enable = true;
-          battery.enable = true;
         };
       };
     };

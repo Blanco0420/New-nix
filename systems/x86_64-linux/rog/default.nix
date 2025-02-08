@@ -11,6 +11,7 @@
       common.enable = true;
       desktop.enable = true;
       gaming.enable = true;
+      laptop.enable = true;
     };
 
   # boot = {

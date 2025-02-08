@@ -17,6 +17,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    system.custom = {
+      nvidiagpu.enable = true;
+      bluetooth.enable = true;
+      battery.enable = true;
+    };
     programs = {
       rog-control-center = {
         enable = true;
