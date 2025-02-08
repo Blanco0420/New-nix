@@ -27,7 +27,6 @@ in
       vlc
       xpipe
       wl-clipboard
-      vscode
       rustdesk
     ];
   };
