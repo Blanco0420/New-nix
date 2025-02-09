@@ -17,6 +17,10 @@
       enable = true;
       name = "blanco";
     };
+
+  home.sessionVariables = {
+    TERMINAL = "ghostty";
+  };
     
   home.stateVersion = "24.05";
 }

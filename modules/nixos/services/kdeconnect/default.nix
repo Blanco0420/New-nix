@@ -24,4 +24,5 @@ in
       }];
       allowedUDPPortRanges = allowedTCPPortRanges;
   };
+};
 }

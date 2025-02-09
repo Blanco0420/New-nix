@@ -1,17 +1,8 @@
-{
-  options,
-  config,
-  lib,
-  pkgs,
-  namespace,
-  ...
-}:
+{ options, config, lib, pkgs, namespace, ... }:
 with lib;
 with lib.custom;
-let
-  cfg = config.roles.desktop;
-in
-{
+let cfg = config.roles.desktop;
+in {
   options.roles.desktop = with types; {
     enable = mkBoolOpt false "nixos desktop configuration.";
   };
@@ -19,20 +10,20 @@ in
   config = mkIf cfg.enable {
 
     services = {
-        xserver = {
-          enable = true;
-          excludePackages = [ pkgs.xterm ];
-        };
-        displayManager.sddm = {
-          enable = true;
-          wayland.enable = true;
-        };
-        desktopManager.plasma6.enable = true;
+      xserver = {
+        enable = true;
+        excludePackages = [ pkgs.xterm ];
+      };
+      displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      desktopManager.plasma6.enable = true;
     };
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       gwenview
-      konsole
+      # konsole
       oxygen
       kate
       elisa
@@ -41,9 +32,8 @@ in
       kwalletmanager
     ];
 
-      system = {
-        custom = {
-        };
-      };
-    };
-  }
+    environment.systemPackages = with pkgs; [ kdePackages.filelight ];
+
+    system = { custom = { }; };
+  };
+}
