@@ -1,57 +1,48 @@
-{
-  inputs,
-  lib,
-  host,
-  pkgs,
-  config,
-  namespace,
-  ...
-}:
-with lib; let
-  cfg = config.apps.firefox;
+{ inputs, lib, host, pkgs, config, namespace, ... }:
+with lib;
+let cfg = config.apps.firefox;
 in {
-  options.apps.firefox = {
-    enable = mkEnableOption "enable firefox browser";
-  };
+  options.apps.firefox = { enable = mkEnableOption "enable firefox browser"; };
 
   config = mkIf cfg.enable {
-    home.file.".mozilla/firefox/default/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
+    # home.file.".mozilla/firefox/default/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
 
     xdg.mimeApps.defaultApplications = {
-      "text/html" = ["firefox.desktop"];
-      "text/xml" = ["firefox.desktop"];
-      "application/pdf" = [firefox.desktop];
-      "x-scheme-handler/http" = ["firefox.desktop"];
-      "x-scheme-handler/https" = ["firefox.desktop"];
+      "text/html" = [ "firefox.desktop" ];
+      "text/xml" = [ "firefox.desktop" ];
+      "application/pdf" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
     };
 
     programs.firefox = {
       enable = true;
       profiles.default = {
         name = "Default";
-        extraConfig = ''
-          ${builtins.readFile "${inputs.firefox-gnome-theme}/configuration/user.js"}
-        '';
+        # extraConfig = ''
+        #   ${builtins.readFile
+        #   "${inputs.firefox-gnome-theme}/configuration/user.js"}
+        # '';
 
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           # gopass-bridge #password manager
-          stylus #custom styles
+          stylus # custom styles
           # temporary-containers #auto delete browsing sessions
           # floccus #bookmark sync 
           # languagetool #spelling help
-          plasma-integration #desktop intergration
+          plasma-integration # desktop intergration
           # react-devtools #dev tools
-          snowflake #help other peeps
+          snowflake # help other peeps
           enhanced-github # better gh
           # new-tab-override #start page 
           terms-of-service-didnt-read # TOS TLDR
-          ublock-origin #ad block
+          ublock-origin # ad block
 
           #yt specific 
           enhancer-for-youtube # 1080p 2.5x speed mods
-          youtube-recommended-videos #remove yt brain rot
-          dearrow #change pics and titles 
-          sponsorblock # remove yt sponsor spots 
+          youtube-recommended-videos # remove yt brain rot
+          dearrow # change pics and titles
+          sponsorblock # remove yt sponsor spots
 
           #bullshit removers 
           clearurls
@@ -70,15 +61,17 @@ in {
 
         settings = {
           "browser.uidensity" = 0;
-          "gnomeTheme.activeTabContrast" = true;
-          "gnomeTheme.hideSingleTab" = false;
-          "gnomeTheme.hideWebrtcIndicator" = true;
-          "gnomeTheme.systemIcons" = true;
-          "gnomeTheme.spinner" = true;
+          # "gnomeTheme.activeTabContrast" = true;
+          # "gnomeTheme.hideSingleTab" = false;
+          # "gnomeTheme.hideWebrtcIndicator" = true;
+          # "gnomeTheme.systemIcons" = true;
+          # "gnomeTheme.spinner" = true;
           "layers.acceleration.force-enabled" = true;
-          "identity.fxaccounts.account.device.name" = "${config.custom.user.name}@${host}";
+          "identity.fxaccounts.account.device.name" =
+            "${config.custom.user.name}@${host}";
           "browser.urlbar.oneOffSearches" = false;
-          "browser.search.hiddenOneOffs" = "Google,Yahoo,Bing,Amazon.com,Twitter,Wikipedia (en),YouTube,eBay";
+          "browser.search.hiddenOneOffs" =
+            "Google,Yahoo,Bing,Amazon.com,Twitter,Wikipedia (en),YouTube,eBay";
           "extensions.pocket.enabled" = false;
           "browser.urlbar.suggest.engines" = false;
           "browser.urlbar.suggest.openpage" = false;
@@ -235,34 +228,34 @@ in {
         #   };
         # };
 
-        userChrome = ''
-          @import "firefox-gnome-theme/userChrome.css";
+        # :root {{
+        #           --gnome-browser-before-load-background:        rgb(30, 30, 46)};
+        #           --gnome-accent-bg:                             rgb(137, 180, 250);
+        #           --gnome-accent:                                rgb(116, 199, 236);
+        #           --gnome-toolbar-background:                    rgb(30, 30, 46);
+        #           --gnome-toolbar-color:                         rgb(205, 214, 244);
+        #           --gnome-toolbar-icon-fill:                     rgb(205, 214, 244);
+        #           --gnome-inactive-toolbar-color:                rgb(30, 30, 46);
+        #           --gnome-inactive-toolbar-border-color:         rgb(49, 50, 68);
+        #           --gnome-inactive-toolbar-icon-fill:            rgb(205, 214, 244);
+        #           --gnome-menu-background:                       rgb(24, 24, 37);
+        #           --gnome-headerbar-background:                  rgb(17, 17, 27);
+        #           --gnome-button-destructive-action-background:  rgb(237, 135, 150);
+        #           --gnome-entry-color:                           rgb(205, 214, 244);
+        #           --gnome-inactive-entry-color:                  rgb(205, 214, 244);
+        #           --gnome-switch-slider-background:              rgb(24, 24, 37);
+        #           --gnome-switch-active-slider-background:       rgb(116, 199, 236);
+        #           --gnome-inactive-tabbar-tab-background:        rgb(30, 30, 46);
+        #           --gnome-inactive-tabbar-tab-active-background: rgba(255,255,255,0.025);
+        #           --gnome-tabbar-tab-background:                 rgb(30, 30, 46);
+        #           --gnome-tabbar-tab-hover-background:           rgba(255,255,255,0.025);
+        #           --gnome-tabbar-tab-active-background:          rgba(255,255,255,0.075);
+        #           --gnome-tabbar-tab-active-hover-background:    rgba(255,255,255,0.100);
+        #           --gnome-tabbar-tab-active-background-contrast: rgba(255,255,255,0.125);
+        #           }}
 
-          :root {{
-          --gnome-browser-before-load-background:        rgb(30, 30, 46)};
-          --gnome-accent-bg:                             rgb(137, 180, 250);
-          --gnome-accent:                                rgb(116, 199, 236);
-          --gnome-toolbar-background:                    rgb(30, 30, 46);
-          --gnome-toolbar-color:                         rgb(205, 214, 244);
-          --gnome-toolbar-icon-fill:                     rgb(205, 214, 244);
-          --gnome-inactive-toolbar-color:                rgb(30, 30, 46);
-          --gnome-inactive-toolbar-border-color:         rgb(49, 50, 68);
-          --gnome-inactive-toolbar-icon-fill:            rgb(205, 214, 244);
-          --gnome-menu-background:                       rgb(24, 24, 37);
-          --gnome-headerbar-background:                  rgb(17, 17, 27);
-          --gnome-button-destructive-action-background:  rgb(237, 135, 150);
-          --gnome-entry-color:                           rgb(205, 214, 244);
-          --gnome-inactive-entry-color:                  rgb(205, 214, 244);
-          --gnome-switch-slider-background:              rgb(24, 24, 37);
-          --gnome-switch-active-slider-background:       rgb(116, 199, 236);
-          --gnome-inactive-tabbar-tab-background:        rgb(30, 30, 46);
-          --gnome-inactive-tabbar-tab-active-background: rgba(255,255,255,0.025);
-          --gnome-tabbar-tab-background:                 rgb(30, 30, 46);
-          --gnome-tabbar-tab-hover-background:           rgba(255,255,255,0.025);
-          --gnome-tabbar-tab-active-background:          rgba(255,255,255,0.075);
-          --gnome-tabbar-tab-active-hover-background:    rgba(255,255,255,0.100);
-          --gnome-tabbar-tab-active-background-contrast: rgba(255,255,255,0.125);
-          }}
+        userChrome = ''
+          # @import "firefox-gnome-theme/userChrome.css";
 
           @-moz-document url-prefix(about:home), url-prefix(about:newtab) {{
           body{{
@@ -321,9 +314,9 @@ in {
           --trailhead-card-button-background-active-color: rgba(12, 12, 13, 0.7)!important;
         '';
 
-        userContent = ''
-          @import "firefox-gnome-theme/userContent.css;
-        '';
+        # userContent = ''
+        #   @import "firefox-gnome-theme/userContent.css;
+        # '';
       };
     };
   };
