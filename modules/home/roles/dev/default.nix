@@ -13,11 +13,17 @@ in {
       vscode = {
         enable = true;
         package = pkgs.vscode;
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+          catppuccin.catppuccin-vsc-icons
+          jnoortheen.nix-ide
+          # yzhang.markdown-all-in-one
+        ];
         userSettings = {
-          "editor.formatOnSave" = true;
-          "editor.formatOnPaste" = true;
-          "nix.enableLanguageServer" = true;
-          "nix.serverPath" = "nil";
+          editor.formatOnSave = true;
+          editor.formatOnPaste = true;
+
+          workbench.iconTheme = "catppuccin-latte";
           # "workbench.iconTheme" = "catppuccin-latte";
         };
 

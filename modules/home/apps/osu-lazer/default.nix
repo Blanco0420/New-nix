@@ -15,9 +15,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-        osu-lazer
-    ]
+    home.packages = [
+        inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin # installs a package
+    ];
     };
 }
 

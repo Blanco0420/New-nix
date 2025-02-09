@@ -24,11 +24,12 @@ in
         cpu_load_change = true;
       };
     };
-
+    apps.osu-lazer.enable = true;
     home.packages = with pkgs; [
       lutris
       winetricks
       wineWowPackages.stable
+      headsetcontrol
     ];
   };
 }

@@ -42,7 +42,7 @@
     ghostty = {
       url                               = "github:ghostty-org/ghostty";
     };
-
+    nix-gaming.url = "github:fufexan/nix-gaming";
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
   
