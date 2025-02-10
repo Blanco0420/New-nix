@@ -24,6 +24,7 @@ in {
           editor.formatOnPaste = true;
 
           workbench.iconTheme = "catppuccin-latte";
+          terminal.integrated.defaultProfile.linux = "fish";
           # "workbench.iconTheme" = "catppuccin-latte";
         };
 
