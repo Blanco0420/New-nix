@@ -1,4 +1,4 @@
-{pkgs, namespace, ...}: {
+{ pkgs, namespace, ... }: {
 
   roles = {
     common.enable = true;
@@ -9,18 +9,14 @@
     dev.enable = true;
   };
 
-  services.custom = {
-      syncthing.enable = false;
-    };
+  services.custom = { syncthing.enable = false; };
 
   custom.user = {
-      enable = true;
-      name = "blanco";
-    };
-
-  home.sessionVariables = {
-    TERMINAL = "ghostty";
+    enable = true;
+    name = "blanco";
   };
-    
+
+  home.sessionVariables = { TERMINAL = "ghostty"; };
+
   home.stateVersion = "24.05";
 }

@@ -6,5 +6,8 @@ in {
   options.system.custom.corsairControl = with types; {
     enable = mkBoolOpt false "Enable Corsair control software";
   };
-  config = mkIf cfg.enable { hardware.ckb-next.enable = true; };
+  config = mkIf cfg.enable {
+    hardware.ckb-next.enable = true;
+    environment.systemPackages = with pkgs; [ ckb-next ];
+  };
 }
