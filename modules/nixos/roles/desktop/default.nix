@@ -32,8 +32,13 @@ in {
       kwalletmanager
     ];
 
-    environment.systemPackages = with pkgs; [ kdePackages.filelight ];
+    environment.systemPackages = with pkgs; [ kdePackages.filelight ckb-next ];
 
-    system = { custom = { japaneseInput.enable = true; }; };
+    system = {
+      custom = {
+        japaneseInput.enable = true;
+        corsairControl.enable = true;
+      };
+    };
   };
 }
