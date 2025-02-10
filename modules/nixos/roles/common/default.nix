@@ -16,7 +16,6 @@ in {
         boot.enable = true;
         japaneseInput.enable = true;
         bluetooth.enable = true;
-        battery.enable = true;
       };
     };
     services = {

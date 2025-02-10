@@ -11,7 +11,7 @@ in {
     system.custom = {
       desktop = {
         enable = true;
-        environent = "xfce";
+        xfce = true;
       };
     };
   };

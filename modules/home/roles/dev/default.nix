@@ -17,6 +17,7 @@ in {
           bbenoist.nix
           catppuccin.catppuccin-vsc-icons
           jnoortheen.nix-ide
+          usernamehw.errorlens
           # yzhang.markdown-all-in-one
         ];
         userSettings = {

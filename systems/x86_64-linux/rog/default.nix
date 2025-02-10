@@ -9,7 +9,21 @@
   roles = {
     common.enable = true;
     gaming.enable = true;
-    gamingLaptop.enable = true;
+    laptop.enable = true;
+  };
+  system.custom = {
+    corsairControl.enable = true;
+    gpu.nvidia.enable = true;
+    desktop = {
+      enable = true;
+      kde = true;
+    };
+  };
+  programs = {
+    rog-control-center = {
+      enable = true;
+      autoStart = true;
+    };
   };
 
   # boot = {
