@@ -34,6 +34,6 @@ in {
 
     environment.systemPackages = with pkgs; [ kdePackages.filelight ];
 
-    system = { custom = { }; };
+    system = { custom = { japaneseInput.enable = true; }; };
   };
 }

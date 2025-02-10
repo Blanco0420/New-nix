@@ -11,15 +11,15 @@ in {
     i18n.inputMethod = {
       type = "fcitx5";
       enable = true;
-      fcitx5.addons = with pkgs; [ fcitx5-mozc fcitx5-gtk ];
-      fonts.packages = with pkgs; [ noto-fonts-cjk noto-fonts-emoji ];
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        kdePackages.fcitx5-qt
+        fcitx5-nord
+      ];
     };
+    environment.systemPackages = with pkgs; [
+      kdePackages.fcitx5-qt # Qt support (for KDE Plasma)
+      fcitx5-configtool # GUI config tool
+    ];
   };
-  environment.systemPackages = with pkgs; [
-    fcitx5
-    fcitx5-mozc
-    fcitx5-gtk # GTK support
-    fcitx5-qt # Qt support (for KDE Plasma)
-    fcitx5-configtool # GUI config tool
-  ];
 }
