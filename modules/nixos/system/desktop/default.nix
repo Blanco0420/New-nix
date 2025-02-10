@@ -5,18 +5,13 @@ let cfg = config.system.custom.desktop;
 in {
   options.system.custom.desktop = with types; {
     enable = mkBoolOpt false "Enable desktop environment";
-    environent = mkOpt {
-      type = enum [ "plasma" "xfce" ];
-      description = "Choose what desktop environment to use (plasma | xfce)";
-    };
+    kde = mkBoolOpt false "Enable KDE Plasma";
+    xfce = mkBoolOpt false "Enable xfce";
   };
-  config = mkIf cfg.enable (mkMerge [
-    {
-      services.xserver.enable = true;
-      services.displayManager.defaultSession = cfg.environent;
-    }
-
-    (mkIf (cfg.environent == "plasma") {
+  config = mkIf cfg.enable {
+    services.xserver.enable = true;
+    services.displayManager.defaultSession = cfg.environment;
+    config = mkIf cfg.kde {
       services = {
         displayManager.sddm = {
           enable = true;
@@ -35,8 +30,8 @@ in {
         kwalletmanager
       ];
       environment.systemPackages = with pkgs; [ kdePackages.filelight ];
-    })
-    (mkIf (cfg.desktop == "xfce") {
+    };
+    config = mkIf cfg.xfce {
       nixpkgs.config.pulseaudio = true;
       services.xserver = {
         desktopManager = {
@@ -44,6 +39,6 @@ in {
           xfce.enable = true;
         };
       };
-    })
-  ]);
+    };
+  };
 }
