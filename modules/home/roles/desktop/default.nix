@@ -1,33 +1,16 @@
-{
-  options,
-  config,
-  lib,
-  pkgs,
-  namespace,
-  ...
-}:
+{ options, config, lib, pkgs, namespace, ... }:
 with lib;
 with lib.custom;
-let
-  cfg = config.roles.desktop;
-in
-{
+let cfg = config.roles.desktop;
+in {
   options.roles.desktop = with types; {
     enable = mkBoolOpt false "enable desktop role";
   };
 
   config = mkIf cfg.enable {
-    services.custom = {
-      kdeconnect.enable = true;
-    };
+    services.custom = { kdeconnect.enable = true; };
     cli.terminals.ghostty.enable = true;
     apps.firefox.enable = true;
-    home.packages = with pkgs; [
-      spotify
-      vlc
-      xpipe
-      wl-clipboard
-      rustdesk
-    ];
+    home.packages = with pkgs; [ spotify vlc xpipe wl-clipboard rustdesk ];
   };
 }
