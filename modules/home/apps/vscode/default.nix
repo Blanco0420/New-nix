@@ -18,7 +18,7 @@ in {
       userSettings = {
         editor.formatOnSave = true;
         editor.formatOnPaste = true;
-
+        git.autofetch = true;
         workbench.iconTheme = "catppuccin-latte";
         terminal.integrated.defaultProfile.linux = "fish";
         # "workbench.iconTheme" = "catppuccin-latte";
