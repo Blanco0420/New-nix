@@ -7,6 +7,7 @@
     gaming.enable = true;
     social.enable = true;
     dev.enable = true;
+    media.enable = true;
   };
 
   services.custom = { syncthing.enable = false; };
@@ -15,8 +16,6 @@
     enable = true;
     name = "blanco";
   };
-
-  home.sessionVariables = { TERMINAL = "ghostty"; };
 
   home.stateVersion = "24.05";
 }
