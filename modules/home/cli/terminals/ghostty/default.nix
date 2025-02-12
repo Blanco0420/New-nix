@@ -1,12 +1,6 @@
-{
-  config,
-  lib,
-  inputs,
-  pkgs,
-  ...
-}:
-with lib; let
-  cfg = config.cli.terminals.ghostty;
+{ config, lib, inputs, pkgs, ... }:
+with lib;
+let cfg = config.cli.terminals.ghostty;
 in {
   options.cli.terminals.ghostty = {
     enable = mkEnableOption "enable ghostty terminal emulator";
@@ -16,7 +10,7 @@ in {
     xdg.configFile."ghostty/config".text = ''
       theme = catppuccin-mocha
       font-family = "b612 Nerd Font"
-      command = fish
+      command = zsh
       font-size = 14
       window-padding-x = 6
       window-padding-y = 6
@@ -25,8 +19,6 @@ in {
     '';
     # gtk-titlebar = false
 
-    home.packages = with inputs; [
-      ghostty.packages.${pkgs.system}.default
-    ];
+    home.packages = with inputs; [ ghostty.packages.${pkgs.system}.default ];
   };
 }
