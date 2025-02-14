@@ -2,99 +2,92 @@
   description = "MylesBolton's Nix/NixOS Config";
   inputs = {
     # nixpkgs.url                         = "github:Nixos/nixpkgs";
-    nixpkgs.url                = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware.url                  = "github:NixOS/nixos-hardware";
-    stylix.url                          = "github:danth/stylix";
-    nur.url                             = "github:nix-community/NUR";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    stylix.url = "github:danth/stylix";
+    nur.url = "github:nix-community/NUR";
     firefox-gnome-theme = {
-      url                               = "github:rafaelmardojai/firefox-gnome-theme";
-      flake                             = false;
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
     };
     nixos-generators = {
-      url                               = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows            = "nixpkgs";
-      };
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     snowfall-lib = {
-      url                               = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows            = "nixpkgs";
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # disko = {
     #   url                               = "github:nix-community/disko/latest";
     #   inputs.nixpkgs.follows            = "nixpkgs";
     # };
     home-manager = {
-      url                               = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows            = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     comin = {
-      url                               = "github:nlewo/comin";
-      inputs.nixpkgs.follows            = "nixpkgs";
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # sops-nix = {
     #   url                               = "github:mic92/sops-nix";
     #   inputs.nixpkgs.follows            = "nixpkgs";
     # };
     nixos-anywhere = {
-      url                               = "github:numtide/nixos-anywhere";
-      inputs.nixpkgs.follows            = "nixpkgs";
+      url = "github:numtide/nixos-anywhere";
+      inputs.nixpkgs.follows = "nixpkgs";
       # inputs.disko.follows              = "disko";
     };
-    ghostty = {
-      url                               = "github:ghostty-org/ghostty";
-    };
+    ghostty = { url = "github:ghostty-org/ghostty"; };
     nix-gaming.url = "github:fufexan/nix-gaming";
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
-  
-  outputs = inputs: 
-  
-  let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
 
-      snowfall = {
-        metadata = "custom";
-        namespace = "custom";
-        meta = {
-          name = "custom";
-          title = "Blanco's custom Nix stuff";
+  outputs = inputs:
+
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
+
+        snowfall = {
+          metadata = "custom";
+          namespace = "custom";
+          meta = {
+            name = "custom";
+            title = "Blanco's custom Nix stuff";
+          };
         };
       };
-    };
-  
-  in
-    lib.mkFlake {
+
+    in lib.mkFlake {
       inherit inputs;
       src = ./.;
 
-      channels-config = {
-        allowUnfree = true;
-      };
+      channels-config = { allowUnfree = true; };
 
-      overlays = with inputs; [
-        nur.overlays.default
-       ];
+      overlays = with inputs; [ nur.overlays.default ];
 
-      systems.modules.nixos = with inputs; [ 
+      systems.modules.nixos = with inputs; [
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         # disko.nixosModules.disko
         # sops-nix.nixosModules.sops
         comin.nixosModules.comin
-        ({...}: {
-           services.comin = {
-           enable = true;
-           remotes = [{
-             name = "origin";
-             url = "https://github.com/Blanco0420/New-nix.git";
-             #auth.access_token_path = "/filepath/to/your/access/token";
-             branches.main.name = "main";
-             branches.testing.name = "testing";
-             poller.period = 300;
-           }];
-         };
-      })
+        ({ ... }: {
+          services.comin = {
+            enable = true;
+            remotes = [{
+              name = "origin";
+              url = "https://github.com/Blanco0420/New-nix.git";
+              #auth.access_token_path = "/filepath/to/your/access/token";
+              branches.main.name = "main";
+              branches.testing.name = "testing";
+              poller.period = 300;
+            }];
+          };
+        })
       ];
     };
 }

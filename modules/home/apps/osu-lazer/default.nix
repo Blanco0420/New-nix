@@ -9,8 +9,12 @@ in {
       inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin # installs a package
     ];
     home.file = {
-      ".config/OpenTabletDriver/Presets/osu.json".source = ./osu.json;
+      ".config/OpenTabletDriver/Presets/osu.json" = {
+        source = "${inputs.self}/configs/openTabletDriver/osu.json";
+        force = true;
+      };
     };
+    system.custom.tablet.enable = true;
   };
 }
 
