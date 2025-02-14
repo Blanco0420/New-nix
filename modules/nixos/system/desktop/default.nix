@@ -32,6 +32,7 @@ in {
         kwalletmanager
       ];
       environment.systemPackages = with pkgs; [ kdePackages.filelight ];
+      programs.dconf.enable = true;
     })
 
     (mkIf cfg.xfce {

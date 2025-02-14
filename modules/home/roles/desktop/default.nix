@@ -10,5 +10,8 @@ in {
   config = mkIf cfg.enable {
     apps.firefox.enable = true;
     home.packages = with pkgs; [ wl-clipboard ];
+
+    #Audio stuff
+    services.pulseeffects.enable = true;
   };
 }

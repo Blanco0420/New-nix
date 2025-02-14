@@ -1,19 +1,11 @@
-{
-  options,
-  config,
-  pkgs,
-  lib,
-  namespace,
-  ...
-}:
+{ options, config, pkgs, lib, namespace, ... }:
 with lib;
 with lib.custom;
-let
-  cfg = config.system.custom.battery;
-in
-{
+let cfg = config.system.custom.battery;
+in {
   options.system.custom.battery = with types; {
-    enable = mkBoolOpt false "Whether or not to enable battery optimizations and utils.";
+    enable = mkBoolOpt false
+      "Whether or not to enable battery optimizations and utils.";
   };
 
   config = mkIf cfg.enable {
@@ -28,6 +20,7 @@ in
         CPU_BOOST_ON_BAT = 0;
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        USB_AUTOSUSPEND = 0;
       };
     };
 

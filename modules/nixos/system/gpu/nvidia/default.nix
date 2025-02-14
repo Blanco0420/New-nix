@@ -38,10 +38,22 @@ in {
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-      # prime = {
-      #     amdgpuBusId = "PCI:5:0:0";
-      #     nvidiaBusId = "PCI:1:0:0";
-      # }
+      prime = {
+        amdgpuBusId = "PCI:5:0:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+    # Specialisation for "on-the-go" mode
+    specialisation = {
+      "on-the-go".configuration = {
+        system.nixos.tags = [ "on-the-go" ];
+        hardware.nvidia = {
+          prime.offload.enable = lib.mkForce true;
+          prime.offload.enableOffloadCmd = lib.mkForce true;
+          prime.sync.enable = lib.mkForce false;
+        };
+
+      };
     };
   };
 }

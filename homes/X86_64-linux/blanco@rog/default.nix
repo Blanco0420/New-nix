@@ -8,6 +8,7 @@
     social.enable = true;
     dev.enable = true;
     media.enable = true;
+    remote.enable = true;
   };
 
   services.custom = { syncthing.enable = false; };

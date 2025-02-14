@@ -28,26 +28,26 @@ in {
         };
 
         serif = {
-          name = "Source Serif CJK JP";
+          name = "Source Serif";
           package = pkgs.source-serif;
         };
 
         sansSerif = {
-          name = "Noto Sans CJK JP";
-          package = pkgs.noto-fonts-cjk-sans;
+          name = "Noto Sans";
+          package = pkgs.noto-fonts;
         };
-        monospace = {
-          name = "Noto Sans Mono CJK JP";
-          package = pkgs.noto-fonts-cjk-sans;
-        };
+        # monospace = {
+        #   name = "Noto Sans Mono";
+        #   package = pkgs.noto-fonts;
+        # };
         emoji = {
           package = pkgs.noto-fonts-emoji;
           name = "Noto Color Emoji";
         };
-        # monospace = {
-        #   package = pkgs.b612;
-        #   name = "b612 Font";
-        # };
+        monospace = {
+          package = pkgs.b612;
+          name = "b612 Font";
+        };
 
         # emoji = {
         #   package = pkgs.noto-fonts-emoji;
