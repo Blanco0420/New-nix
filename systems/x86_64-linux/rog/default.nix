@@ -26,7 +26,6 @@
       autoStart = true;
     };
   };
-  programs.kdeconnect.enable = true;
   services.custom.kdeconnect.enable = true;
   # services.custom.kdeconnect.enable = true;
 

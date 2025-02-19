@@ -10,7 +10,8 @@ with lib;
 with lib.custom;
 let
   cfg = config.services.custom.syncthing;
-in {
+in
+{
   options.services.custom.syncthing = {
     enable = mkEnableOption "Enable syncthing service";
   };
@@ -30,4 +31,3 @@ in {
     };
   };
 }
-

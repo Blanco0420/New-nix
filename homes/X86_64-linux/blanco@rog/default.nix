@@ -1,4 +1,5 @@
-{ pkgs, namespace, ... }: {
+{ pkgs, namespace, ... }:
+{
 
   roles = {
     common.enable = true;
@@ -10,8 +11,6 @@
     media.enable = true;
     remote.enable = true;
   };
-
-  services.custom = { syncthing.enable = false; };
 
   custom.user = {
     enable = true;
