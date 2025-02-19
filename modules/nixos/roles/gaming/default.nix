@@ -21,6 +21,6 @@ in {
         extraCompatPackages = with pkgs; [ proton-ge-bin ];
       };
     };
-    # hardware.opentabletdriver = { enable = true; };
+    hardware.opentabletdriver.enable = true;
   };
 }

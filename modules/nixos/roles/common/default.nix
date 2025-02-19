@@ -1,8 +1,17 @@
-{ options, config, lib, pkgs, namespace, ... }:
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 with lib;
 with lib.custom;
-let cfg = config.roles.common;
-in {
+let
+  cfg = config.roles.common;
+in
+{
   options.roles.common = with types; {
     enable = mkBoolOpt false "common nixos configuration.";
   };

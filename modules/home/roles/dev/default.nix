@@ -1,15 +1,27 @@
-{ options, config, lib, pkgs, namespace, ... }:
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 with lib;
 with lib.custom;
-let cfg = config.roles.dev;
-in {
+let
+  cfg = config.roles.dev;
+in
+{
   options.roles.dev = with types; {
     enable = mkBoolOpt false "enable dev role";
   };
 
   config = mkIf cfg.enable {
     cli.terminals.ghostty.enable = true;
-    home.packages = with pkgs; [ nixfmt nil ];
+    home.packages = with pkgs; [
+      nixfmt-rfc-style
+      nil
+    ];
     apps.vscode.enable = true;
     programs = {
 
@@ -17,7 +29,9 @@ in {
         userEmail = "sachajamesterry@gmail.com";
         userName = "Blanco0420";
       };
-      gh = { enable = true; };
+      gh = {
+        enable = true;
+      };
 
       fzf = {
         enable = true;
@@ -30,17 +44,24 @@ in {
       helix = {
         enable = true;
         defaultEditor = true;
-        languages.language = [{
-          name = "nix";
-          auto-format = true;
-          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-        }];
+        languages.language = [
+          {
+            name = "nix";
+            auto-format = true;
+            formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+          }
+        ];
         settings = {
           editor = {
             bufferline = "multiple";
-            shell = [ "zsh" "c-" ];
+            shell = [
+              "zsh"
+              "c-"
+            ];
           };
-          keys.normal = { space.space = "file_picker"; };
+          keys.normal = {
+            space.space = "file_picker";
+          };
           keys.insert = {
             A.x = "normal_mode";
             # esc = "no_op";

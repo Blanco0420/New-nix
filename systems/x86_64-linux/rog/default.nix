@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   imports = [
     # ./disko.nix
     ./hardware-configuration.nix
@@ -16,7 +17,7 @@
     gpu.nvidia.enable = true;
     desktop = {
       enable = true;
-      kde = true;
+      gnome = true;
     };
   };
   programs = {
@@ -25,6 +26,9 @@
       autoStart = true;
     };
   };
+  programs.kdeconnect.enable = true;
+  services.custom.kdeconnect.enable = true;
+  # services.custom.kdeconnect.enable = true;
 
   # boot = {
   #   # supportedFilesystems = lib.mkForce ["btrfs"];

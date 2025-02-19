@@ -3,7 +3,7 @@
   roles = {
     common.enable = true;
     desktop.enable = true;
-    # office.enable = true;
+    office.enable = true;
     gaming.enable = true;
     social.enable = true;
     dev.enable = true;

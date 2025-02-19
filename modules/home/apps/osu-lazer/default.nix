@@ -14,7 +14,6 @@ in {
         force = true;
       };
     };
-    system.custom.tablet.enable = true;
   };
 }
 

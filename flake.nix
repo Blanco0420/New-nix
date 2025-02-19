@@ -1,5 +1,5 @@
 {
-  description = "MylesBolton's Nix/NixOS Config";
+  description = "Blanco's Nix/NixOS Config";
   inputs = {
     # nixpkgs.url                         = "github:Nixos/nixpkgs";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -39,12 +39,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.disko.follows              = "disko";
     };
-    ghostty = { url = "github:ghostty-org/ghostty"; };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
     nix-gaming.url = "github:fufexan/nix-gaming";
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
 
     let
       lib = inputs.snowfall-lib.mkLib {
@@ -61,11 +64,14 @@
         };
       };
 
-    in lib.mkFlake {
+    in
+    lib.mkFlake {
       inherit inputs;
       src = ./.;
 
-      channels-config = { allowUnfree = true; };
+      channels-config = {
+        allowUnfree = true;
+      };
 
       overlays = with inputs; [ nur.overlays.default ];
 
@@ -75,19 +81,24 @@
         # disko.nixosModules.disko
         # sops-nix.nixosModules.sops
         comin.nixosModules.comin
-        ({ ... }: {
-          services.comin = {
-            enable = true;
-            remotes = [{
-              name = "origin";
-              url = "https://github.com/Blanco0420/New-nix.git";
-              #auth.access_token_path = "/filepath/to/your/access/token";
-              branches.main.name = "main";
-              branches.testing.name = "testing";
-              poller.period = 300;
-            }];
-          };
-        })
+        (
+          { ... }:
+          {
+            services.comin = {
+              enable = true;
+              remotes = [
+                {
+                  name = "origin";
+                  url = "https://github.com/Blanco0420/New-nix.git";
+                  #auth.access_token_path = "/filepath/to/your/access/token";
+                  branches.main.name = "main";
+                  branches.testing.name = "testing";
+                  poller.period = 300;
+                }
+              ];
+            };
+          }
+        )
       ];
     };
 }

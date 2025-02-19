@@ -23,13 +23,10 @@ in {
         syntaxHighlighting.enable = true;
         autocd = true;
         shellAliases = {
-          c = "kitten cliboard copy";
-          p = "kitten clipboard paste";
           ll = "ls -l";
           swc = "sudo nixos-rebuild switch --flake";
-          hx = "helix";
           lg = "lazygit";
-          flakec = "nix flake check";
+          nfc = "nix flake check";
         };
         autosuggestion.enable = true;
         oh-my-zsh = {
