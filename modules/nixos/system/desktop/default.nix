@@ -45,7 +45,6 @@ in
     })
 
     (mkIf cfg.xfce {
-      nixpkgs.config.pulseaudio = true;
       services = {
         xserver = {
           desktopManager = {
