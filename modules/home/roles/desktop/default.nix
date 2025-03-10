@@ -21,6 +21,7 @@ in
     home.packages = with pkgs; [
       wl-clipboard
       ulauncher
+      kdePackages.spectacle
     ];
 
     #Audio stuff
@@ -32,7 +33,10 @@ in
         enabled-extensions = with pkgs.gnomeExtensions; [
           blur-my-shell.extensionUuid
           headsetcontrol.extensionUuid
-          kimpanel.extensionUuid
+          open-bar.extensionUuid
+          tiling-shell.extensionUuid
+
+          gsconnect.extensionUuid
         ];
       };
     };

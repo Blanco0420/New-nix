@@ -17,7 +17,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.kdeconnect.enable = true;
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
     networking.firewall = rec {
       allowedTCPPortRanges = [
         {

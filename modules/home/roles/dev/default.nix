@@ -21,9 +21,25 @@ in
     home.packages = with pkgs; [
       nixfmt-rfc-style
       nil
+      jdk
+      # bun
+      # maven
+      docker-client
+      # mysql-workbench
+      devenv
+      # postman
     ];
     apps.vscode.enable = true;
     programs = {
+
+      eclipse.enable = true;
+
+      direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        # nix-direnv.enable = true;
+        # silent = true;
+      };
 
       git = {
         userEmail = "sachajamesterry@gmail.com";

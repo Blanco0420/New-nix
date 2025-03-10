@@ -1,17 +1,26 @@
-{ lib, pkgs, config, inputs, namespace, ... }:
-let cfg = config.styles.stylix;
-in {
+{
+  lib,
+  pkgs,
+  config,
+  inputs,
+  namespace,
+  ...
+}:
+let
+  cfg = config.styles.stylix;
+in
+{
   imports = with inputs; [ stylix.homeManagerModules.stylix ];
 
-  options.styles.stylix = { enable = lib.mkEnableOption "Enable stylix"; };
+  options.styles.stylix = {
+    enable = lib.mkEnableOption "Enable stylix";
+  };
 
   config = lib.mkIf cfg.enable {
     stylix = {
       enable = true;
       autoEnable = true;
-      base16Scheme =
-        "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       image = pkgs.custom.wallpapers.main;
 
       cursor = {

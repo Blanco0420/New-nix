@@ -64,8 +64,9 @@ in
 
       environment.systemPackages = with pkgs.gnomeExtensions; [
         blur-my-shell
-        headsetcontrol
+        open-bar
         kimpanel
+        tiling-shell
       ];
       environment.gnome.excludePackages = (
         with pkgs;

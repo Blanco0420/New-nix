@@ -1,8 +1,20 @@
-{ inputs, lib, host, pkgs, config, namespace, ... }:
+{
+  inputs,
+  lib,
+  host,
+  pkgs,
+  config,
+  namespace,
+  ...
+}:
 with lib;
-let cfg = config.apps.firefox;
-in {
-  options.apps.firefox = { enable = mkEnableOption "enable firefox browser"; };
+let
+  cfg = config.apps.firefox;
+in
+{
+  options.apps.firefox = {
+    enable = mkEnableOption "enable firefox browser";
+  };
 
   config = mkIf cfg.enable {
     # home.file.".mozilla/firefox/default/chrome/firefox-gnome-theme".source = inputs.firefox-gnome-theme;
@@ -17,34 +29,34 @@ in {
 
     programs.firefox = {
       enable = true;
-      profiles.default = {
+      profiles."default" = {
         name = "Default";
         # extraConfig = ''
         #   ${builtins.readFile
         #   "${inputs.firefox-gnome-theme}/configuration/user.js"}
         # '';
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           # gopass-bridge #password manager
           stylus # custom styles
           # temporary-containers #auto delete browsing sessions
-          # floccus #bookmark sync 
+          # floccus #bookmark sync
           # languagetool #spelling help
-          plasma-integration # desktop intergration
+          # plasma-integration # desktop intergration
           # react-devtools #dev tools
           snowflake # help other peeps
           enhanced-github # better gh
-          # new-tab-override #start page 
+          # new-tab-override #start page
           terms-of-service-didnt-read # TOS TLDR
           ublock-origin # ad block
 
-          #yt specific 
+          #yt specific
           enhancer-for-youtube # 1080p 2.5x speed mods
           youtube-recommended-videos # remove yt brain rot
           dearrow # change pics and titles
           sponsorblock # remove yt sponsor spots
 
-          #bullshit removers 
+          #bullshit removers
           clearurls
           news-feed-eradicator
           # re-enable-right-click
@@ -67,11 +79,9 @@ in {
           # "gnomeTheme.systemIcons" = true;
           # "gnomeTheme.spinner" = true;
           "layers.acceleration.force-enabled" = true;
-          "identity.fxaccounts.account.device.name" =
-            "${config.custom.user.name}@${host}";
+          "identity.fxaccounts.account.device.name" = "${config.custom.user.name}@${host}";
           "browser.urlbar.oneOffSearches" = false;
-          "browser.search.hiddenOneOffs" =
-            "Google,Yahoo,Bing,Amazon.com,Twitter,Wikipedia (en),YouTube,eBay";
+          "browser.search.hiddenOneOffs" = "Google,Yahoo,Bing,Amazon.com,Twitter,Wikipedia (en),YouTube,eBay";
           "extensions.pocket.enabled" = false;
           "browser.urlbar.suggest.engines" = false;
           "browser.urlbar.suggest.openpage" = false;
@@ -321,4 +331,3 @@ in {
     };
   };
 }
-

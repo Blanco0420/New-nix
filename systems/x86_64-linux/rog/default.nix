@@ -34,6 +34,7 @@
   #   kernelPackages = pkgs.linuxPackages_latest;
   #   resumeDevice = "/dev/disk/by-label/nixos";
   # };
+  environment.systemPackages = with pkgs; [ prismlauncher ];
 
   system.stateVersion = "24.05";
 }

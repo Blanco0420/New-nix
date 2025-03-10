@@ -1,11 +1,19 @@
-{ options, config, pkgs, lib, namespace, ... }:
+{
+  options,
+  config,
+  pkgs,
+  lib,
+  namespace,
+  ...
+}:
 with lib;
 with lib.custom;
-let cfg = config.system.custom.battery;
-in {
+let
+  cfg = config.system.custom.battery;
+in
+{
   options.system.custom.battery = with types; {
-    enable = mkBoolOpt false
-      "Whether or not to enable battery optimizations and utils.";
+    enable = mkBoolOpt false "Whether or not to enable battery optimizations and utils.";
   };
 
   config = mkIf cfg.enable {
@@ -27,10 +35,9 @@ in {
     # Disable GNOMEs power management
     services.power-profiles-daemon.enable = false;
 
-    # Enable powertop
-    powerManagement.powertop.enable = true;
-
     # Enable thermald (only necessary if on Intel CPUs)
     # services.thermald.enable = true;
+    # Enable powertop
+    # powerManagement.powertop.enable = true;
   };
 }

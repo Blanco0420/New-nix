@@ -1,13 +1,12 @@
 {
-    "nix.enableLanguageServer": true,
-    "nix.serverPath": "nil", // or "nixd"
-    "nix.serverSettings": {
-        "nil": {
-            "formatting": {
-                "command": [
-                    "nixfmt"
-                ]
-            }
-        }
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil", // or "nixd"
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": {
+        "command": ["nixfmt"]
+      }
     }
+  },
+  "cSpell.words": ["wallad"]
 }

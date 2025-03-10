@@ -23,7 +23,7 @@
     #   inputs.nixpkgs.follows            = "nixpkgs";
     # };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     comin = {
@@ -44,6 +44,7 @@
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs =
@@ -73,7 +74,10 @@
         allowUnfree = true;
       };
 
-      overlays = with inputs; [ nur.overlays.default ];
+      overlays = with inputs; [
+        nur.overlays.default
+        nix-vscode-extensions.overlays.default
+      ];
 
       systems.modules.nixos = with inputs; [
         stylix.nixosModules.stylix

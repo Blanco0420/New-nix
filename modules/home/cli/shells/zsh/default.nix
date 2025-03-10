@@ -1,16 +1,28 @@
-{ options, config, lib, pkgs, namespace, ... }:
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 with lib;
 with lib.custom;
 let
   inherit (config.lib.stylix) colors;
   cfg = config.cli.shells.fish;
-in {
+in
+{
   options.cli.shells.zsh = with types; {
     enable = mkBoolOpt false "enable zsh shell";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ oh-my-zsh oh-my-posh ];
+    home.packages = with pkgs; [
+      oh-my-zsh
+      oh-my-posh
+      zsh-nix-shell
+    ];
 
     programs = {
       oh-my-posh = {
@@ -19,6 +31,9 @@ in {
         enableZshIntegration = true;
       };
       zsh = {
+        initExtra = ''
+          eval "$(direnv hook zsh)"
+        '';
         enable = true;
         syntaxHighlighting.enable = true;
         autocd = true;
@@ -31,7 +46,12 @@ in {
         autosuggestion.enable = true;
         oh-my-zsh = {
           enable = true;
-          plugins = [ "git" "sudo" "docker" ];
+          plugins = [
+            "git"
+            "sudo"
+            "docker"
+            "direnv"
+          ];
         };
       };
     };

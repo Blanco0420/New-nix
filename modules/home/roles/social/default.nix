@@ -22,6 +22,7 @@ in
       signal-desktop
       whatsapp-for-linux
       element-desktop
+      mattermost-desktop
     ];
   };
 }
